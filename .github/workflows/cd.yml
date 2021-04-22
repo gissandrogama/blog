@@ -1,21 +1,18 @@
-name:  CD (prod)
+name: CD
+
 on:
   push:
     branches:
-      - master
       - main
-      - v1
 jobs:
-   deploy:
-    # needs: test # Will only run if the test job succeeds
-    if: github.ref == 'refs/heads/master' # Only run this job if it is on the main branch
-
+  deploy:
+    if: github.ref == 'refs/heads/main' # Only run this job if it is on the main branch
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: master # Checkout out master instead of the latest commit
+          ref: main # Check out main instead of the latest commit
           fetch-depth: 0 # Checkout the whole branch
 
       - uses: actions/setup-python@v2
@@ -26,6 +23,6 @@ jobs:
         with:
           GIGALIXIR_USERNAME: ${{ secrets.GIGALIXIR_USERNAME }}
           GIGALIXIR_PASSWORD: ${{ secrets.GIGALIXIR_PASSWORD }}
-          GIGALIXIR_APP: blog-elxpro # Feel free to also put this in your secrets
+          GIGALIXIR_APP: ${{ secrets.GIGALIXIR_APP }}
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          MIGRATIONS: false  # defaults to true
+          MIGRATIONS: false # defaults to true

@@ -10,7 +10,7 @@ jobs:
     - uses: erlef/setup-elixir@885971a72ed1f9240973bd92ab57af8c1aa68f24
       with:
         otp-version: '23.0'
-        elixir-version: '1.10.1'
+        elixir-version: '1.11.0'
 
     - uses: actions/cache@v2
       env:
@@ -36,7 +36,7 @@ jobs:
     - uses: erlef/setup-elixir@885971a72ed1f9240973bd92ab57af8c1aa68f24
       with:
         otp-version: '23.0'
-        elixir-version: '1.10.1'
+        elixir-version: '1.11.0'
 
     - uses: actions/cache@v2
       env:
@@ -62,7 +62,7 @@ jobs:
     - uses: erlef/setup-elixir@885971a72ed1f9240973bd92ab57af8c1aa68f24
       with:
         otp-version: '23.0'
-        elixir-version: '1.10.1'
+        elixir-version: '1.11.0'
 
     - uses: actions/cache@v2
       env:
@@ -81,6 +81,44 @@ jobs:
     - name: Format
       run: mix sobelow --config
 
+  setup_node:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: erlef/setup-elixir@885971a72ed1f9240973bd92ab57af8c1aa68f24
+      with:
+        otp-version: '23.0'
+        elixir-version: '1.11.0'
+
+    - uses: actions/cache@v2
+      env:
+        cache-name: cache-elixir-deps
+      with:
+        path: |
+          deps
+          _build
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
+        restore-keys: |
+                    ${{ runner.os }}-build-${{ env.cache-name }}-
+                    ${{ runner.os }}-build-
+                    ${{ runner.os }}-
+
+    - name: Find yarn cache location
+      id: yarn-cache
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+
+    - uses: actions/cache@v1
+      with:
+        path: ${{ steps.yarn-cache.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+
+    - name: Install deps
+      run: |
+        mix deps.get
+        (cd assets && yarn)
+
   test:
     runs-on: ubuntu-latest
     steps:
@@ -88,7 +126,7 @@ jobs:
       - uses: erlef/setup-elixir@885971a72ed1f9240973bd92ab57af8c1aa68f24
         with:
           otp-version: '23.0'
-          elixir-version: '1.11'
+          elixir-version: '1.11.0'
 
       - uses: actions/cache@v2
         env:

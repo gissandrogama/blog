@@ -29,3 +29,4 @@ jobs:
           GIGALIXIR_APP: blog-elxpro # Feel free to also put this in your secrets
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           MIGRATIONS: true # defaults to true
+

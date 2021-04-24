@@ -1,5 +1,10 @@
 # Blog
 
+[![codecov](https://codecov.io/gh/gissandrogama/blog/branch/main/graph/badge.svg?token=k3AdkTh86w)](https://codecov.io/gh/gissandrogama/blog)
+
+![CI](https://github.com/gissandrogama/blog/actions/workflows/ci.yml/badge.svg)
+![CD](https://github.com/gissandrogama/blog/actions/workflows/cd.yml/badge.svg)
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`

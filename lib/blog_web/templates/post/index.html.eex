@@ -6,7 +6,19 @@
   <%= for post <- @posts do %>
   <li class="collection-item">
     <div><%= post.title %>
-    <a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div>
+      <a href="#!" class="secondary-content"><i class="material-icons red-text">delete</i></a>
+      <a href="#!" class="secondary-content"><i class="material-icons green-text">edit</i></a>
+      <%= link to: Routes.post_path(@conn, :show, post.id), class: "secondary-content" do %>
+      <i class="material-icons blue-text">send</i>
+      <% end %>
+    </div>
   </li>
   <% end %>
 </ul>
+
+
+<div class="fixed-action-btn">
+  <a class="btn-floating btn-large red">
+    <i class="large material-icons">add</i>
+  </a>
+</div>

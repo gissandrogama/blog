@@ -4,7 +4,7 @@ defmodule Blog.Repo.Migrations.Posts do
   def change do
     create table :posts do
       add :title, :string
-      add :description, :string
+      add :description, :text
 
       timestamps()
     end

@@ -1,6 +1,6 @@
 <ul class="collection with-header">
   <li class="collection-header">
-    <h4>All pots</h4>
+    <h4>All posts</h4>
   </li>
 
   <%= for post <- @posts do %>

@@ -1,4 +1,7 @@
 defmodule BlogWeb.PageControllerTest do
+  @moduledoc """
+  test module of page controller
+  """
   use BlogWeb.ConnCase
 
   test "GET /", %{conn: conn} do

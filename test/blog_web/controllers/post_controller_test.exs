@@ -9,8 +9,8 @@ defmodule BlogWeb.PostControllerTest do
     assert html_response(conn, 200) =~ "All posts"
   end
 
-  test "GET show posts /", %{conn: conn} do
-    conn = get(conn, "/posts/1")
-    assert html_response(conn, 200) =~ "Phoenix framework"
-  end
+  # test "GET show posts /", %{conn: conn} do
+  #   conn = get(conn, "/posts/1")
+  #   assert html_response(conn, 200) =~ "Phoenix framework"
+  # end
 end

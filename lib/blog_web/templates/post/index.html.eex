@@ -1,6 +1,6 @@
 <ul class="collection with-header">
   <li class="collection-header">
-    <h4>All pots</h4>
+    <h4>All posts</h4>
   </li>
 
   <%= for post <- @posts do %>
@@ -18,7 +18,7 @@
 
 
 <div class="fixed-action-btn">
-  <a class="btn-floating btn-large red">
-    <i class="large material-icons">add</i>
-  </a>
+  <%= link to: Routes.post_path(@conn, :new), class: "btn-floating btn-large red" do  %>
+  <i class="large material-icons">add</i>
+  <% end %>
 </div>

@@ -13,7 +13,8 @@ defmodule BlogWeb.PostController do
     render(conn, "show.html", post: post)
   end
 
-  def new(conn, _params) do
-    render(conn, "new.html")
+  def new(conn, params) do
+    changeset = Post.changeset(%Post{})
+    render(conn, "new.html", changeset: changeset)
   end
 end

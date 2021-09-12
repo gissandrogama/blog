@@ -15,21 +15,22 @@
     <div class="row">
       <div class="input-field col s10">
         <i class="material-icons prefix">mode_edit</i>
-        <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-        <label for="icon_prefix2">Comentário</label>
+        <textarea id="comentario" class="materialize-textarea"></textarea>
+        <label for="comentario">Escreva seu comentário</label>
       </div>
 
       <div class="input-field col s2">
-       <a class="waves-effect waves-light btn">button</a>
+        <a class="waves-effect waves-light btn" id="btn-comentar">Comentar</a>
       </div>
     </div>
   </form>
 </div>
-<ul class="collection">
-  <li class="collection-item avatar">
-    <i class="material-icons circle red">play_arrow</i>
-    <span class="title">Title</span>
-    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-      standard</p>
-  </li>
-</ul>
+ <ul class="collection">
+ </ul>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    window.createSocket( <%= @post.id %> )
+  })
+</script>

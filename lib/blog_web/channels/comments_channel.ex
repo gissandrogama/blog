@@ -3,11 +3,23 @@ defmodule BlogWeb.CommentsChannel do
 
   def join("comments:" <> post_id, _payload, socket) do
     post = Blog.Posts.get_post_with_comments!(post_id)
-
-    {:ok, %{comments: post.comments}, socket}
+    {:ok, %{comments: post.comments}, assign(socket, :post_id, post.id)}
   end
 
+  def handle_in("comment:add", content, socket) do
+    response =
+      socket.assigns.post_id
+      |> Blog.Comments.create_comment(content)
 
-  def handle_in() do
+    case response do
+      {:ok, comment} ->
+
+        broadcast!(socket, "comments:#{socket.assigns.post_id}:new", %{comment: comment})
+
+        {:reply, :ok, socket}
+
+      {:error, _changeset} ->
+        {:reply, :error, socket}
+    end
   end
 end

@@ -1,4 +1,7 @@
 defmodule BlogWeb.CommentsChannel do
+  @moduledoc """
+  This module has functions that handle of channel enter and send message
+  """
   use BlogWeb, :channel
 
   def join("comments:" <> post_id, _payload, socket) do
@@ -13,7 +16,6 @@ defmodule BlogWeb.CommentsChannel do
 
     case response do
       {:ok, comment} ->
-
         broadcast!(socket, "comments:#{socket.assigns.post_id}:new", %{comment: comment})
 
         {:reply, :ok, socket}

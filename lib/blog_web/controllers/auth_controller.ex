@@ -6,6 +6,8 @@ defmodule BlogWeb.AuthController do
 
   plug Ueberauth
 
+  alias Blog.Accounts
+
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, %{"provider" => provider}) do
     user = %{
       token: auth.credentials.token,
@@ -15,6 +17,18 @@ defmodule BlogWeb.AuthController do
       image: auth.info.image,
       provider: provider
     }
-    render(conn, "index.html")
+
+    case Accounts.create_user(user) do
+      {:ok, user} ->
+        conn
+        |> put_flash(:info, "Bem vindo!!! #{user.email}")
+        |> put_session(:user_id, user.id)
+        |> redirect(to: Routes.page_path(conn, :index))
+
+      {:error, _} ->
+        conn
+        |> put_flash(:error, "Atenticação deu errado")
+        |> redirect(to: Routes.page_path(conn, :index))
+    end
   end
 end

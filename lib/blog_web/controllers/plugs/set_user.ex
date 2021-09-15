@@ -1,4 +1,4 @@
-defmodule BlogWeb.SetUser do
+defmodule BlogWeb.Plugs.SetUser do
   @moduledoc """
   This module has functions that add a user to the session.
   """
@@ -8,7 +8,7 @@ defmodule BlogWeb.SetUser do
 
   def init(_), do: nil
 
-  def call(conn, _) do
+  def call(conn, _opts) do
     user_id = get_session(conn, :user_id)
 
     cond do

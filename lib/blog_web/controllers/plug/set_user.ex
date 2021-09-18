@@ -1,4 +1,4 @@
-defmodule BlogWeb.Plugs.SetUser do
+defmodule BlogWeb.Plug.SetUser do
   @moduledoc """
   This module has functions that add a user to the session.
   """

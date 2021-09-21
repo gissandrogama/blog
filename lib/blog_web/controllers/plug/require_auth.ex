@@ -1,4 +1,7 @@
 defmodule BlogWeb.Plug.RequireAuth do
+  @moduledoc """
+  This module of plug that verify user authenticate
+  """
   use BlogWeb, :controller
 
   def init(_), do: nil

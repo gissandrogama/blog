@@ -61,7 +61,7 @@ defmodule BlogWeb.PostController do
     |> redirect(to: Routes.post_path(conn, :index))
   end
 
-  def check_owner(conn = %{params: %{"id" => post_id}}, _) do
+  def check_owner(%{params: %{"id" => post_id}} = conn, _) do
     if Posts.get_post!(post_id).user_id == conn.assigns.user.id do
       conn
     else

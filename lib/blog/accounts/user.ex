@@ -13,6 +13,8 @@ defmodule Blog.Accounts.User do
     field :token, :string
     field :email, :string
 
+    has_many :posts, Blog.Posts.Post
+
     timestamps()
   end
 

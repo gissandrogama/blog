@@ -11,16 +11,26 @@ defmodule Blog.AccountsTest do
       image: "some image",
       last_name: "some last_name",
       provider: "some provider",
-      token: "some token"
+      token: "some token",
+      email: "test@email.com"
     }
     @update_attrs %{
       first_name: "some updated first_name",
       image: "some updated image",
       last_name: "some updated last_name",
       provider: "some updated provider",
-      token: "some updated token"
+      token: "some updated token",
+      email: "updatetest@email.com"
     }
-    @invalid_attrs %{first_name: nil, image: nil, last_name: nil, provider: nil, token: nil}
+
+    @invalid_attrs %{
+      first_name: nil,
+      image: nil,
+      last_name: nil,
+      provider: nil,
+      token: nil,
+      email: "test"
+    }
 
     def user_fixture(attrs \\ %{}) do
       {:ok, user} =
@@ -32,8 +42,8 @@ defmodule Blog.AccountsTest do
     end
 
     test "list_users/0 returns all users" do
-      user = user_fixture()
-      assert Accounts.list_users() == [user]
+      user_fixture()
+      assert Accounts.list_users() |> Enum.count() == 2
     end
 
     test "get_user!/1 returns the user with given id" do

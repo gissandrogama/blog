@@ -60,7 +60,6 @@ defmodule BlogWeb.AuthControllerTest do
       |> Plug.Test.init_test_session(user_id: 2)
       |> get(Routes.auth_path(conn, :logout))
 
-
     assert redirected_to(conn) == Routes.page_path(conn, :index)
   end
 end

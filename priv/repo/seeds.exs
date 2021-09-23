@@ -23,6 +23,17 @@ user = %{
     "ya29.a0ARrdaM93AwctsYLgu5_ZFEhpPkVmwnMJuW5ewQZ6LojuCkoM1qBoTTfQY1nRHiEmJTCJJ0gxg2QZMacslWV0cn7P87X-o3uocxDw1Le_gJxxZ-wtT-WqE0LdOLrdEQ_hkkcd6o0muIuD66nOVLqe-w55Nm0_tQ"
 }
 
+user_2 = %{
+  email: "henrygama@gmail.com",
+  first_name: nil,
+  image:
+    "https://lh3.googleusercontent.com/a-/AOh14GiZkmHmmMIaY5Vl1B7uZmE5O27nOPDL6ShmCRG5=s96-c",
+  last_name: nil,
+  provider: "google",
+  token:
+    "ya29.a0ERrdaM93AwctsYLgu5_ZFEhpPkVmwnMJuW5ewQZ6LojuCkoM1qBoTTfQY1nRHiEmJTCJJ0gxg2QZMacslWV0cn7P87X-o3uocxDw1Le_gJxxZ-wtT-WqE0LdOLrdEQ_hkkcd6o0muIuD66nOVLqe-w55Nm0_tQ"
+}
+
 post_phoenix = %{
   title: "Phoenix framework",
   description:
@@ -36,6 +47,7 @@ post_postgres = %{
 }
 
 {:ok, user} = Accounts.create_user(user)
+{:ok, _user_2} = Accounts.create_user(user_2)
 
 {:ok, _phoenix} = Posts.create_post(user, post_phoenix)
 {:ok, _postgres} = Posts.create_post(user, post_postgres)

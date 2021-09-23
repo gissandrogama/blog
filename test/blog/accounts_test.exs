@@ -1,4 +1,7 @@
 defmodule Blog.AccountsTest do
+  @moduledoc """
+  Test module of accounts
+  """
   use Blog.DataCase
 
   alias Blog.Accounts
@@ -43,7 +46,7 @@ defmodule Blog.AccountsTest do
 
     test "list_users/0 returns all users" do
       user_fixture()
-      assert Accounts.list_users() |> Enum.count() == 2
+      assert Accounts.list_users() |> Enum.count() == 3
     end
 
     test "get_user!/1 returns the user with given id" do
@@ -62,6 +65,11 @@ defmodule Blog.AccountsTest do
 
     test "create_user/1 with invalid data returns error changeset" do
       assert {:error, %Ecto.Changeset{}} = Accounts.create_user(@invalid_attrs)
+    end
+
+    test "create_user/1 with invalid data returns error datacase" do
+      assert {:error, changeset} = Accounts.create_user(@invalid_attrs)
+      assert "can't be blank" in errors_on(changeset).provider
     end
 
     test "update_user/2 with valid data updates the user" do

@@ -16,10 +16,6 @@ config :blog, BlogWeb.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
-config :ueberauth, Ueberauth.Strategy.Google.OAuth,
-  client_id: System.get_env("GOOGLE_CLIENT_ID"),
-  client_secret: System.get_env("GOOGLE_CLIENT_SECRET")
-
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key

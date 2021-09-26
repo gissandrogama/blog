@@ -5,6 +5,7 @@ defmodule Blog.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @derive {Jason.Encoder, only: [:email, :image]}
   schema "users" do
     field :first_name, :string
     field :image, :string
@@ -14,6 +15,7 @@ defmodule Blog.Accounts.User do
     field :email, :string
 
     has_many :posts, Blog.Posts.Post
+    has_many :comments, Blog.Comments.Comment
 
     timestamps()
   end

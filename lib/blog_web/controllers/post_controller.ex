@@ -1,13 +1,13 @@
 defmodule BlogWeb.PostController do
   use BlogWeb, :controller
 
-  plug BlogWeb.Plug.RequireAuth when action in [:create, :new, :edit, :update, :delete]
+  plug BlogWeb.Plug.RequireAuth when action in [:index, :create, :new, :edit, :update, :delete]
   plug :check_owner when action in [:edit, :update, :delete]
 
   alias Blog.{Posts, Posts.Post}
 
   def index(conn, _params) do
-    posts = Posts.list_posts(conn.assigns[:user].id)
+    posts = Posts.list_posts(conn.assigns[:user])
     render(conn, "index.html", posts: posts)
   end
 

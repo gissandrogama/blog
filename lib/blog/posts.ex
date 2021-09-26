@@ -5,9 +5,9 @@ defmodule Blog.Posts do
   import Ecto.Query, warn: false
   alias Blog.{Posts.Post, Repo}
 
-  def list_posts(user_id \\ nil) do
-    if user_id do
-      query = from p in Post, where: p.user_id == ^user_id
+  def list_posts(user \\ nil) do
+    if user do
+      query = from p in Post, where: p.user_id == ^user.id
       Repo.all(query)
     else
       Repo.all(Post)

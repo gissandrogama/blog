@@ -5,8 +5,14 @@
     <p class="grey-text text-darken-2">
       <%= @post.description %>
     </p>
-    <%= link to: Routes.post_path(@conn, :index), class: "btn-floating left waves-effect" do  %>
-    <i class="material-icons">chevron_left</i>
+    <%= if @conn.assigns[:user] do %>
+      <%= link to: Routes.post_path(@conn, :index), class: "btn-floating left waves-effect" do  %>
+      <i class="material-icons">chevron_left</i>
+      <% end %>
+    <% else %>
+      <%= link to: Routes.page_path(@conn, :index), class: "btn-floating left waves-effect" do  %>
+      <i class="material-icons">chevron_left</i>
+      <% end %>
     <% end %>
   </div>
 </div>

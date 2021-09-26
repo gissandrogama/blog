@@ -36,4 +36,12 @@ defmodule BlogWeb.CommentsChannelTest do
     assert_broadcast broadcast_event, msg
     refute is_nil(msg)
   end
+
+  test "return error, when comment invalid", %{socket: socket, post: post} do
+    {:ok, _comments, socket} = subscribe_and_join(socket, "comments:#{post.id}", %{})
+
+    ref = push(socket, "comment:add", %{"content" => ""})
+
+    assert_reply ref, :error, %{}
+  end
 end

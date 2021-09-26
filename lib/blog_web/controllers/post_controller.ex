@@ -7,7 +7,7 @@ defmodule BlogWeb.PostController do
   alias Blog.{Posts, Posts.Post}
 
   def index(conn, _params) do
-    posts = Posts.list_posts()
+    posts = Posts.list_posts(conn.assigns[:user].id)
     render(conn, "index.html", posts: posts)
   end
 
